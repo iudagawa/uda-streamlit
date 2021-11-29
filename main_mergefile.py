@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import time
 
-st.title('LabAlert/GP10 測定データマージツール')
+st.title('LabAlert/GP10 測定データマージツール2')
 
 
 # メイン画面
