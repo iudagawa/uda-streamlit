@@ -3,8 +3,8 @@ import numpy as np
 import pandas as pd
 import time
 
-st.title('LabAlert/GP10 測定データマージツール2')
-
+st.title('LabAlert/GP10 測定データマージツール')
+st.subheader('Ver 1.0 2021.11.30')
 
 # メイン画面
 #st.write('LabAlert AssetMeasure 読み込みデータ')
