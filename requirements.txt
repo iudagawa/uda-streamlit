@@ -3,10 +3,10 @@ numpy
 pandas
 openpyxl
 
-ComputerVisionClient
-OperationStatusCodes
-VisualFeatureTypes
-CognitiveServicesCredentials
+#ComputerVisionClient
+#OperationStatusCodes
+#VisualFeatureTypes
+#CognitiveServicesCredentials
 
 Image
 json
