@@ -57,7 +57,7 @@ import streamlit as st
 from PIL import ImageDraw       # 描画の為
 from PIL import ImageFont       # 描画の為
 
-st.title('物体検出アプリ(Ver2.0)')
+st.title('物体検出アプリ(Ver0.0)')
 
 upload_file = st.file_uploader('画像ファイル選択',type=['jpg','png'])
 #file_uploaderにはファイルパス取得が出来ない
