@@ -106,7 +106,8 @@ def get_worksheet():
     ]
 
     credentials = Credentials.from_service_account_file(
-        './udemy_streamlit/service_account.json',
+        #'./udemy_streamlit/service_account.json',
+        'service_account.json',
         scopes=scopes
     )
 
