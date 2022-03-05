@@ -1,27 +1,35 @@
-import streamlit as st
+
 import numpy as np
 import pandas as pd
 import time
+import streamlit as st
 
 st.title('LabAlert/GP10 測定データマージツール')
-st.subheader('Ver 1.0 2021.11.30')
+st.subheader('Ver 1.1  2022.3.5')
 
 # メイン画面
 #st.write('LabAlert AssetMeasure 読み込みデータ')
-uploaded_file1 = st.file_uploader('LabAlert AssetMeasure 読み込み',type='xlsx')
+uploaded_file1 = st.file_uploader('■ LabAlert AssetMeasure 読み込み',type='xlsx')
 if uploaded_file1 is not None:
     # アップロードファイルをメイン画面にデータ表示
     la_data = pd.read_excel(uploaded_file1 ,engine="openpyxl")
     st.dataframe( la_data, 640,120)
 
 #st.write('GP10 読み込みデータ')
-uploaded_file2 = st.file_uploader('GP10 読み込み',type='xlsx')
+uploaded_file2 = st.file_uploader('■ GP10 読み込み',type='xlsx')
 if uploaded_file2 is not None:
     # アップロードファイルをメイン画面にデータ表示
     gp10_data = pd.read_excel(uploaded_file2 ,engine="openpyxl")
     st.dataframe( gp10_data, 640,120)
 
-st.write('マージした結果は [c:\\xls\\pandas_to_excel.xlsx] に書き込みます')
+st.write('マージした結果は [c:\\xls\\pandas_to_excel.xlsx] に書き込みます(ローカル環境のみ)')
+
+@st.cache
+def convert_df(df):
+     # IMPORTANT: Cache the conversion to prevent computation on every rerun
+     return df.to_csv().encode('shift_jis') 
+
+down_csv = ""
 
 if st.button("Exec Create Excel file"):
     #LabAlert (AssetMeasureLogs_export.xls) データ読み込み
@@ -47,8 +55,16 @@ if st.button("Exec Create Excel file"):
 
     #ファイルに保存
     join_data3.to_excel('c:\\xls\\pandas_to_excel.xlsx')
-
+    
     st.dataframe( join_data3, 640, 240 )
-
     st.write('create file')
     
+    down_csv = convert_df(join_data3) 
+
+
+st.download_button(
+    label = "Download Create Excel file as CSV",
+    data = down_csv,
+    file_name = 'マージ結果.csv',
+    mime = 'text/csv',
+)
